@@ -22,7 +22,7 @@ opset = ""
 
 def function_TB():
     tb = []
-    mypath = "/runs/simrun_tav/e5ca/REV/TAV/"
+    mypath = "..............#dir path"
     tbs = [f for f in listdir(mypath) if isdir(join(mypath, f))]
     for dir in tbs:
         extentions = "verilog.e5ca."
@@ -32,16 +32,16 @@ def function_TB():
 
 # def _regs_list():
 #     data = []
-#     var1 = open("/runs/simrun_tav/e5ca/REV/TAV/verilog.e5ca.IF_Apr21/E5CA/HBM3/Regressions/VE2VA/extended_moura_long.run","r").readlines()
+#     var1 = open("#path.run","r").readlines()
 #     for line in var1:
 #         data.append(line)
-#     # var1 = "/runs/simrun_tav/e5ca/REV/TAV/verilog.e5ca.IF_Apr21/E5CA/HBM3/Regressions/VE2VA/"
+#     # var1 = "...................."
 #     # data = [f for f in listdir(var1) if isfile(join(var1, f))]
 #     return data
 
 def _regs_list():
     regs = []
-    regs_dir = ["/runs/simrun_tav/e5ca/REV/TAV/verilog.e5ca.IF_Apr21/E5CA/HBM3/Regressions", "HBM3/Regressions"]
+    regs_dir = ["#regpath", "select_options"]
     for items in regs_dir:
         for subdir, dirs, files in os.walk(items):
             for file in files:
@@ -67,7 +67,7 @@ def dir_prefix():
     reg = regression_combobox.get()
     dir_= dirpath_entry.get()
     # date = time.strftime("%b_%d")
-    # netlist1 = 'TAV_SPF_SPEF_TT_1000MV_110C_B9b5aF_REVLAY12_Feb11_2023_222614_JST'
+    # netlist1 = '............'
     netlist_src = re.compile(r'.*(TT|JFF|JSS|JSF|JFS).*(M10C|110C).*(B9b5aF|e5caF).*_([a-zA-Z]+\d+)_.*')
     str_change = f'{netlist1}'
 
@@ -138,7 +138,7 @@ def Generate_CMD():
     else:
         netlist_ = netlist__
 
-    # op_set = (f"+define+DAL+FORCE_PPR_RATE+DISCONNECT_UBUMP+CHANS_DISABLED{add_def} +skip_serial_scan +ignore_precon_data +zero_init2 +speed_grades=2400 +chan_pincomp_delta=100 +rd_post_ui=3 +relax_tXP +set_tIS=100")
+    # op_set = (f"   #opset")
     VSIM_CMD = (f'vsim_snap -r {reg.strip()} -x {config_.strip()} -l {dir_name.strip()} -Y {depth.strip()} -o "{opset_list.strip()}" {add_arg.strip()}{add_def} {netlist_}')
 
     cmd_info.insert('1.0',f'{VSIM_CMD}')
@@ -156,7 +156,7 @@ def netlist_callbackfunc(event):
     global tb_, netlist_list
     tb_ = f'{event.widget.get()}'
     onlyfiles = []
-    mypath = f"/runs/simrun_tav/e5ca/REV/TAV/{tb_}/Netlist/"
+    mypath = f".....#...TBpath/{tb_}/Netlist/"
     # print("tb_ inside function netlist = %s"%(tb_))
     onlyfiles = [f for f in listdir(mypath) if isdir(join(mypath, f))]
     netlist_list.delete(0, tkinter.END)
@@ -203,7 +203,7 @@ def update_opts_box(config):
 
 def run_cmd():
     global change_tb
-    change_tb = f'/runs/simrun_tav/e5ca/REV/TAV/{tb_}' 
+    change_tb = f'#tb_path/{tb_}' 
     os.chdir(change_tb) 
     x = f'{os.chdir(change_tb)}'
     os.system(x)  
