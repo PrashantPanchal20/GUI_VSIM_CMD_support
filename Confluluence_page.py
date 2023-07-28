@@ -1,5 +1,5 @@
 import sys
-sys.path.append( '......../.local/lib/python2.7/site-packages' )
+sys.path.append( '...........................' )
 
 import pandas as pd
 import atlassian
